@@ -64,19 +64,19 @@ node app.js
 
 ### Home Page
 
-![Home Page](screenshots/home.png)
+![Home Page]
 
 ### About Page
 
-![About Page](screenshots/about.png)
+![About Page]
 
 ### Time Page
 
-![Time Page](screenshots/time.png)
+![Time Page]
 
 ### Not Found Page
 
-![Not Found Page](screenshots/invalid.png)
+![Not Found Page])
 
 ## Notes
 
