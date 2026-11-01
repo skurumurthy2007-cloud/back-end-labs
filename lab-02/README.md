@@ -41,6 +41,14 @@ Connect an Express server to a SQLite database and expose CRUD operations over H
    http://localhost:3000
    ```
 
+The database and `book` table are created automatically if they do not already
+exist. Set `PORT` to use a different port, for example
+`set PORT=3001 && npm start` on Windows.
+
+For Render deployment, use Node.js 20.x. The project pins `sqlite3` to a
+Render-compatible version because newer native SQLite binaries may require a
+Linux `GLIBC` version unavailable in Render's runtime.
+
 ## Database
 
 The SQLite database is located at `database/books.db`.
