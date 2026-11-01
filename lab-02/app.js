@@ -17,16 +17,30 @@ const initializeDBAndServer = async () => {
             driver: sqlite3.Database,
         });
 
-        app.listen(3000, () => {
-            console.log("Server running at http://localhost:3000/");
+        await db.exec(`
+            CREATE TABLE IF NOT EXISTS book (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                author TEXT NOT NULL,
+                price INTEGER NOT NULL,
+                pages INTEGER NOT NULL
+            )
+        `);
+
+        const port = Number(process.env.PORT) || 3000;
+        const server = app.listen(port, () => {
+            console.log(`Server running at http://localhost:${port}/`);
         });
+        return server;
     } catch (error) {
         console.error(`Database connection failed: ${error.message}`);
         process.exit(1);
     }
 };
 
-initializeDBAndServer();
+if (require.main === module) {
+    initializeDBAndServer();
+}
 
 // GET all books
 app.get("/books/", async (request, response) => {
@@ -134,3 +148,4 @@ app.delete("/books/:bookId/", async (request, response) => {
 });
 
 module.exports = app;
+module.exports.start = initializeDBAndServer;
